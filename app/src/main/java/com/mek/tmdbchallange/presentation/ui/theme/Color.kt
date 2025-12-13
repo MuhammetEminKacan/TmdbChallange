@@ -1,4 +1,4 @@
-package com.mek.tmdbchallange.ui.theme
+package com.mek.tmdbchallange.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
