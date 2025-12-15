@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">TmdbChallange</string>
+    <string name="welcome">Welcome!</string>
+    <string name="discover_movies">Discover the best movies</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="popular">Popular</string>
+    <string name="top_rated">Top Rated</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="see_all">See All</string>
+    <string name="search_movie">Search movie</string>
+    <string name="save">Save</string>
+    <string name="profile_saved">Profile saved successfully</string>
+    <string name="error_info">An error occurred</string>
+    <string name="release_date"> release_date</string>
+    <string name="rating">Rating</string>
+    <string name="original_language">Original Language</string>
+    <string name="genres">genres</string>
+    <string name="movie_owerview">owerview</string>
+    <string name="hompage" > homepage</string>
+    <string name="personal_info" >personal information</string>
+    <string name="name" >name</string>
+    <string name="surname" >surname</string>
+    <string name="language_preference" >Language Preference</string>
+    <string name="search_forwarding" >Type in the field above to start your search.</string>
+
+
+
 </resources>

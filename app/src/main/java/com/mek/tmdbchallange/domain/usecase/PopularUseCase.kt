@@ -10,10 +10,9 @@ class PopularUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
     operator fun invoke(
-        language: String,
         page: Int,
         region: String?
     ) : Flow<Resource<List<Movie>>> {
-        return repository.getPopular(language = language, page = page, region = region)
+        return repository.getPopular(page = page, region = region)
     }
 }

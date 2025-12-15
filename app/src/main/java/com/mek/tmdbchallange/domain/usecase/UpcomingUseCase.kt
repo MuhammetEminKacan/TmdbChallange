@@ -10,10 +10,9 @@ class UpcomingUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
     operator fun invoke(
-        language: String,
         page: Int,
         region: String?
     ) : Flow<Resource<List<Movie>>> {
-        return repository.getUpcoming(language = language, page = page, region = region)
+        return repository.getUpcoming(page = page, region = region)
     }
 }

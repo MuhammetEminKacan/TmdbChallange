@@ -1,4 +1,4 @@
-package com.mek.tmdbchallange.presentation.navigation.components
+package com.mek.tmdbchallange.presentation.bottom_navigation
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.mek.tmdbchallange.presentation.navigation.BottomNavItem
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {

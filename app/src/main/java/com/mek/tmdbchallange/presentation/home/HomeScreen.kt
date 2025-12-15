@@ -1,5 +1,6 @@
 package com.mek.tmdbchallange.presentation.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -28,16 +29,20 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.mek.tmdbchallange.R
 import com.mek.tmdbchallange.domain.model.Movie
-import com.mek.tmdbchallange.presentation.home.components.MovieListItem
+import com.mek.tmdbchallange.presentation.AllMovies.MovieCategory
+import com.mek.tmdbchallange.presentation.Screen
 
 @Composable
 fun HomeScreen(
+    navController: NavController,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.collectAsState().value
@@ -46,21 +51,33 @@ fun HomeScreen(
         viewModel.onEvent(HomeEvent.LoadHomeData)
     }
 
-    HomeScreenContent(state = state)
+    HomeScreenContent(
+        state = state,
+        onMovieClick = { movie ->
+            navController.navigate(Screen.MovieDetailScreen.createRoute(movie.id))
+        },
+        onAllMovieClick = { category ->
+            navController.navigate(Screen.AllMovieScreen.createRoute(category = category))
+        },
+        onProfileClick = {
+            navController.navigate(Screen.ProfileScreen.route)
+        }
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreenContent(state: HomeState) {
+fun HomeScreenContent(state: HomeState,
+                      onProfileClick: () -> Unit,
+                      onMovieClick: (Movie) -> Unit,
+                      onAllMovieClick: (MovieCategory) -> Unit
+) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("CineHub") },
+                title = { Text(stringResource(R.string.app_name)) },
                 actions = {
-                    IconButton(onClick = { /* TODO */ }) {
-                        Icon(painter = painterResource(id = R.drawable.ic_moon), contentDescription = "Theme")
-                    }
-                    IconButton(onClick = { /* TODO */ }) {
+                    IconButton(onClick = onProfileClick) {
                         Icon(Icons.Default.Person, contentDescription = "Profile")
                     }
                 }
@@ -74,8 +91,8 @@ fun HomeScreenContent(state: HomeState) {
                 .padding(horizontal = 16.dp)
                 .verticalScroll(rememberScrollState())
         ) {
-            Text(text = "Hoş Geldiniz! 👋", fontSize = 24.sp, fontWeight = FontWeight.Bold)
-            Text(text = "En iyi filmleri keşfedin", fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
+            Text(text = stringResource(R.string.welcome), fontSize = 24.sp, fontWeight = FontWeight.Bold)
+            Text(text = stringResource(R.string.discover_movies), fontSize = 16.sp, color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f))
 
             Spacer(modifier = Modifier.height(24.dp))
 
@@ -84,13 +101,17 @@ fun HomeScreenContent(state: HomeState) {
             } else if (state.error != null) {
                 Text(text = state.error, color = MaterialTheme.colorScheme.error, modifier = Modifier.align(Alignment.CenterHorizontally))
             } else {
-                MovieCategorySection(title = "now playing", movies = state.nowPlayingMovies)
+                MovieCategorySection(title = stringResource(R.string.now_playing), movies = state.nowPlayingMovies,
+                    category = MovieCategory.NOW_PLAYING,onMovieClick = onMovieClick, onAllMovieClick = onAllMovieClick)
                 Spacer(modifier = Modifier.height(16.dp))
-                MovieCategorySection(title = "popular" , movies = state.popularMovies)
+                MovieCategorySection(title = stringResource(R.string.popular), movies = state.popularMovies,
+                    category = MovieCategory.POPULAR,onMovieClick = onMovieClick, onAllMovieClick = onAllMovieClick)
                 Spacer(modifier = Modifier.height(16.dp))
-                MovieCategorySection(title = "top rated" , movies = state.topRatedMovies)
+                MovieCategorySection(title = stringResource(R.string.top_rated) , movies = state.topRatedMovies,
+                    category = MovieCategory.TOP_RATED,onMovieClick = onMovieClick, onAllMovieClick = onAllMovieClick)
                 Spacer(modifier = Modifier.height(16.dp))
-                MovieCategorySection(title = "Upcoming" , movies = state.upcomingMovies)
+                MovieCategorySection(title = stringResource(R.string.upcoming) , movies = state.upcomingMovies,
+                    category = MovieCategory.UPCOMING,onMovieClick = onMovieClick, onAllMovieClick = onAllMovieClick)
             }
         }
     }
@@ -99,7 +120,10 @@ fun HomeScreenContent(state: HomeState) {
 @Composable
 fun MovieCategorySection(
     title: String,
-    movies: List<Movie>
+    movies: List<Movie>,
+    category : MovieCategory,
+    onMovieClick: (Movie) -> Unit,
+    onAllMovieClick: (MovieCategory) -> Unit
 ) {
     Column {
         Row(
@@ -109,15 +133,18 @@ fun MovieCategorySection(
         ) {
             Text(text = title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
             Text(
-                text = "Tümünü Gör >",
+                text = stringResource(R.string.see_all),
                 color = MaterialTheme.colorScheme.primary,
-                fontWeight = FontWeight.SemiBold
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.clickable{
+                    onAllMovieClick(category)
+                }
             )
         }
         Spacer(modifier = Modifier.height(12.dp))
         LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             items(movies) {
-                MovieListItem(movie = it)
+                MovieListItem(movie = it, onClick = onMovieClick)
             }
         }
     }

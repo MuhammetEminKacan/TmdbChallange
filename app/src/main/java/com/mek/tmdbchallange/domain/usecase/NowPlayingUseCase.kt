@@ -10,10 +10,9 @@ class NowPlayingUseCase @Inject constructor(
     private val repository : MovieRepository
 ) {
     operator fun invoke(
-        language: String,
         page: Int,
         region: String?
     ) : Flow<Resource<List<Movie>>> {
-        return repository.getNowPlaying(language = language, page = page, region = region)
+        return repository.getNowPlaying(page = page, region = region)
     }
 }

@@ -38,7 +38,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getNowPlayingMovies() {
-        nowPlayingUseCase("en-US", 1, null).onEach { result ->
+        nowPlayingUseCase(1, null).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.update {
@@ -68,7 +68,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getPopularMovies() {
-        popularUseCase("en-US", 1, null).onEach { result ->
+        popularUseCase(1, null).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.update {
@@ -98,7 +98,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getTopRatedMovies() {
-        topRatedUseCase.invoke("en-US", 1, null).onEach { result ->
+        topRatedUseCase.invoke(1, null).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.update {
@@ -128,7 +128,7 @@ class HomeViewModel @Inject constructor(
     }
 
     private fun getUpcomingMovies() {
-        upcomingUseCase.invoke("en-US", 1, null).onEach { result ->
+        upcomingUseCase.invoke(1, null).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _state.update {

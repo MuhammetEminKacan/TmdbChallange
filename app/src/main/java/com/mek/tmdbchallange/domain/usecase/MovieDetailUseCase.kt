@@ -1,18 +1,17 @@
 package com.mek.tmdbchallange.domain.usecase
 
-import com.mek.tmdbchallange.domain.model.Movie
+import com.mek.tmdbchallange.domain.model.MovieDetail
 import com.mek.tmdbchallange.domain.repository.MovieRepository
 import com.mek.tmdbchallange.util.Resource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class TopRatedUseCase @Inject constructor(
+class MovieDetailUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
     operator fun invoke(
-        page: Int,
-        region: String?
-    ) : Flow<Resource<List<Movie>>> {
-        return repository.getTopRated(page = page, region = region)
+        movieId: Int,
+    ) : Flow<Resource<MovieDetail>> {
+        return repository.getMovieDetail(movieId = movieId)
     }
 }

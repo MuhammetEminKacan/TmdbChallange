@@ -6,13 +6,14 @@ import com.mek.tmdbchallange.util.Resource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class TopRatedUseCase @Inject constructor(
+class SearchUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
     operator fun invoke(
+        query: String,
         page: Int,
-        region: String?
+        includeAdult: Boolean
     ) : Flow<Resource<List<Movie>>> {
-        return repository.getTopRated(page = page, region = region)
+        return repository.searchMovies(query = query,page = page, includeAdult = includeAdult)
     }
 }

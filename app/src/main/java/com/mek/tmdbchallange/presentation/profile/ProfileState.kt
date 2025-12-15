@@ -7,5 +7,7 @@ data class ProfileState(
     val surname: String = "",
     val email: String = "",
     val selectedLanguage: Language = Language.ENGLISH,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val photoUri: String? = null,
+    val isSavedSuccessfully: Boolean = false
 )

@@ -8,12 +8,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.mek.tmdbchallange.presentation.AllMovies.AllMovieScreen
 import com.mek.tmdbchallange.presentation.home.HomeScreen
-import com.mek.tmdbchallange.presentation.navigation.BottomNavItem
-import com.mek.tmdbchallange.presentation.navigation.components.BottomNavigationBar
+import com.mek.tmdbchallange.presentation.bottom_navigation.BottomNavItem
+import com.mek.tmdbchallange.presentation.bottom_navigation.BottomNavigationBar
+import com.mek.tmdbchallange.presentation.detail.MovieDetailScreen
 import com.mek.tmdbchallange.presentation.profile.ProfileScreen
 import com.mek.tmdbchallange.presentation.search.SearchScreen
 import com.mek.tmdbchallange.presentation.ui.theme.TmdbChallangeTheme
@@ -36,14 +40,28 @@ class MainActivity : ComponentActivity() {
                         startDestination = BottomNavItem.Home.route,
                         modifier = Modifier.padding(innerPadding)
                     ) {
-                        composable(BottomNavItem.Home.route) {
-                            HomeScreen()
+                        composable(route = BottomNavItem.Home.route) {
+                            HomeScreen(navController = navController)
                         }
-                        composable(BottomNavItem.Search.route) {
-                            SearchScreen()
+                        composable(route = BottomNavItem.Search.route) {
+                            SearchScreen(navController = navController)
                         }
-                        composable("profile_screen") { // Keep profile screen accessible
+                        composable(route = Screen.ProfileScreen.route) {
                             ProfileScreen()
+                        }
+                        composable(
+                           route = Screen.MovieDetailScreen.route,
+                            arguments =listOf(navArgument("id"){ type = NavType.IntType })
+                        ) {
+                            MovieDetailScreen()
+                        }
+                        composable(
+                            route = Screen.AllMovieScreen.route,
+                            arguments = listOf(
+                                navArgument("category") { type = NavType.StringType }
+                            )
+                        ) {
+                            AllMovieScreen(navController = navController)
                         }
                     }
                 }

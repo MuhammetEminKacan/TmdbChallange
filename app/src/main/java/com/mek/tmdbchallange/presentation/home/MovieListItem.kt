@@ -1,4 +1,4 @@
-package com.mek.tmdbchallange.presentation.home.components
+package com.mek.tmdbchallange.presentation.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -25,12 +25,13 @@ import com.mek.tmdbchallange.domain.model.Movie
 import com.mek.tmdbchallange.util.Constants
 
 @Composable
-fun MovieListItem(movie: Movie) {
+fun MovieListItem(movie: Movie,onClick: (Movie) -> Unit) {
     Card(
         shape = RoundedCornerShape(16.dp),
         modifier = Modifier
             .width(150.dp)
-            .height(220.dp)
+            .height(220.dp),
+        onClick = { onClick(movie) }
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             AsyncImage(
