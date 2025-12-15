@@ -2,10 +2,12 @@
 Uygulama; çoklu dil desteği, profil yönetimi ve sonsuz listeleme (infinite scroll) gibi özellikler sunar.
 
 
-<img width="200" height="300" alt="Ekran görüntüsü 2025-12-15 173542" src="https://github.com/user-attachments/assets/83e64ed8-c91a-477f-a86e-d9d04e39478a" />
-<img width="200" height="300" alt="Ekran görüntüsü 2025-12-15 173721" src="https://github.com/user-attachments/assets/e4f61ee7-4ae0-428b-b3cf-80976e4218c0" />
-<img width="200" height="300" alt="Ekran görüntüsü 2025-12-15 173930" src="https://github.com/user-attachments/assets/568d2046-d519-481b-9e24-0fea657f14fc" />
-<img width="200" height="300" alt="Ekran görüntüsü 2025-12-15 174019" src="https://github.com/user-attachments/assets/ac5d9f16-b982-4db7-a9d3-138305985c21" />
+<img width="180" height="300" alt="Ekran görüntüsü 2025-12-15 173542" src="https://github.com/user-attachments/assets/83e64ed8-c91a-477f-a86e-d9d04e39478a" />
+<img width="180" height="300" alt="Ekran görüntüsü 2025-12-15 173721" src="https://github.com/user-attachments/assets/e4f61ee7-4ae0-428b-b3cf-80976e4218c0" />
+<img width="180" height="300" alt="Ekran görüntüsü 2025-12-15 173930" src="https://github.com/user-attachments/assets/568d2046-d519-481b-9e24-0fea657f14fc" />
+<img width="180" height="300" alt="Ekran görüntüsü 2025-12-15 174019" src="https://github.com/user-attachments/assets/ac5d9f16-b982-4db7-a9d3-138305985c21" />
+<img width="180" height="300" alt="image" src="https://github.com/user-attachments/assets/0b683c14-14ac-4d06-b924-affb0bcd316b" />
+
 
 
 ## 🚀 Özellikler
